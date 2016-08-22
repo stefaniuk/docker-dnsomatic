@@ -1,10 +1,10 @@
 Docker DNS-O-Matic
 ==================
 
-Easily announce your new IP to the world from a Docker container!
+Easily announce your new IP to the world.
 
-Installation
-------------
+Quick Start
+-----------
 
     docker run -d \
         -e USERNAME=${USERNAME} \

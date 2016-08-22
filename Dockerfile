@@ -1,7 +1,8 @@
 FROM python:3-onbuild
 
+ENV LAPSE ${LAPSE:-"300"}
+
 COPY dnsomatic.py /
 COPY logging.conf /
-COPY requirements.txt /usr/src/app/
 
 CMD [ "python", "dnsomatic.py" ]
