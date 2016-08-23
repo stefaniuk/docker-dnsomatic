@@ -10,13 +10,16 @@ lapse = float(os.getenv('LAPSE'))
 ip = ''
 
 while True:
-    req = requests.get('https://updates.dnsomatic.com/nic/update', auth=(username, password))
-    if req.status_code == 200:
-        newIp = req.text.rsplit()[1]
-        if newIp != ip:
-            ip = newIp
-            log.info('IP:' + ip)
-    else:
-        log.error(req.text)
+    try:
+        req = requests.get('https://updates.dnsomatic.com/nic/update', auth=(username, password))
+        if req.status_code == 200:
+            newIp = req.text.rsplit()[1]
+            if newIp != ip:
+                ip = newIp
+                log.info('IP: ' + ip)
+        else:
+            log.error(req.text)
+    except:
+        log.error('Unexpected error: ' + sys.exc_info()[0])
 
     time.sleep(lapse)
