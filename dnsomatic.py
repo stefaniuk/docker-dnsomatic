@@ -19,7 +19,7 @@ while True:
                 log.info('IP: ' + ip)
         else:
             log.error(req.text)
-    except:
-        log.error('Unexpected error: ' + sys.exc_info()[0])
+    except Exception as e:
+        log.error('Unexpected error: ' + str(e))
 
     time.sleep(lapse)
