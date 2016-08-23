@@ -18,7 +18,7 @@ log = logging.getLogger('dnsomatic')
 
 # delayed startup
 if delay > 1:
-    log.info('Script started with a ' + str(delay) + ' seconds delay')
+    log.info('Script started with a ' + str(delay) + '-second delay')
     time.sleep(delay)
 
 ip = ''
