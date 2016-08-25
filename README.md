@@ -10,17 +10,17 @@ Installation
     cd docker-dnsomatic
     docker build -t stefaniuk/dnsomatic --rm .
 
-Quick Start
------------
+Quickstart
+----------
 
     docker run -d \
-        --name="dnsomatic" \
-        --hostname="dnsomatic" \
-        -e USERNAME=${USERNAME} \
-        -e PASSWORD=${PASSWORD} \
+        --name "dnsomatic" \
+        --hostname "dnsomatic" \
+        --env "USERNAME=${USERNAME}" \
+        --env "PASSWORD=${PASSWORD}" \
         stefaniuk/dnsomatic
 
-TODO
+Todo
 ----
 
  * Include timezone in the log output
