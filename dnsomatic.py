@@ -1,37 +1,43 @@
-import requests, time, os
-import logging, logging.config
+import os, time, requests
+from datetime import datetime as dt
+from pytz import timezone as tz
+
+# log message
+def log(level, msg):
+    now = dt.now(tz(os.getenv('TIMEZONE')))
+    datetime = now.strftime('%Y/%m/%d %H:%M:%S.%f')[:-3] + now.strftime('%z')
+    print(datetime + '|' + __file__.replace('.py', '') + '|' + level.ljust(5) + '|' + msg)
+    return
 
 # get environment variables
-url = os.getenv('URL')
 username = os.getenv('USERNAME')
 password = os.getenv('PASSWORD')
 lapse = int(os.getenv('LAPSE'))
 delay = int(os.getenv('DELAY'))
-timezone = os.getenv('TIMEZONE')
 
-# set timezone
-os.environ['TZ'] = timezone
-time.tzset()
-# set logger
-logging.config.fileConfig('logging.conf')
-log = logging.getLogger('dnsomatic')
-
-# delayed startup
-if delay > 1:
-    log.info('Script started with a ' + str(delay) + '-second delay')
+# delay startup
+if delay > 0:
+    log('INFO', 'Started with a ' + str(delay) + '-second delay')
     time.sleep(delay)
 
-ip = ''
+current_ip = ''
 while True:
     try:
-        req = requests.get(url, auth=(username, password))
+        # get your IP address
+        req = requests.get('http://myip.dnsomatic.com/')
         if req.status_code == 200:
-            newIp = req.text.rsplit()[1]
-            if newIp != ip:
-                ip = newIp
-                log.info('New IP set to ' + ip)
+            new_ip = req.text
+            if new_ip != current_ip:
+
+                # update DNS-O-Matic account
+                req = requests.get('https://updates.dnsomatic.com/nic/update?myip=' + new_ip, auth=(username, password))
+                if req.status_code != 200 or req.text.rsplit()[0] != 'good':
+                    raise Exception(req.text)
+
+                log('INFO', ('Current IP ' if current_ip == '' else 'New IP ') + new_ip)
+                current_ip = new_ip
         else:
-            log.error(req.text)
+            raise Exception(req.text)
     except Exception as e:
-        log.error('Unexpected error: ' + str(e))
+        log('ERROR', str(e))
     time.sleep(lapse)

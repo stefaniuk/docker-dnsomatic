@@ -6,25 +6,30 @@ Easily announce your new IP to the world.
 Installation
 ------------
 
-    git clone https://github.com/stefaniuk/docker-dnsomatic.git
-    cd docker-dnsomatic
-    docker build -t stefaniuk/dnsomatic --rm .
+Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/stefaniuk/dnsomatic/).
+
+    docker pull stefaniuk/dnsomatic:latest
+
+Alternatively you can build the image yourself.
+
+    docker build --tag stefaniuk/dnsomatic \
+        github.com/stefaniuk/docker-dnsomatic
 
 Quickstart
 ----------
 
-    docker run -d \
+Start container using:
+
+    docker run --detach --restart always \
         --name "dnsomatic" \
         --hostname "dnsomatic" \
         --env "USERNAME=${USERNAME}" \
         --env "PASSWORD=${PASSWORD}" \
         stefaniuk/dnsomatic
 
-Todo
-----
+Log in to it using:
 
- * Convert Python code to Shell script
- * Include timezone in the log output
+    docker exec -it dnsomatic /bin/bash
 
 See
 ---

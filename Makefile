@@ -12,36 +12,23 @@ help:
 	@echo
 	@echo "Usage:"
 	@echo
-	@echo "    make build"
-	@echo "    make run [OPTIONS]"
-	@echo "    make exec"
-	@echo "    make log"
-	@echo "    make stop"
-	@echo "    make purge"
+	@echo "    make build|run|clean|purge"
 	@echo
 
 build:
 	@docker build -t $(REPOSITORY) --rm .
 
 run:
-	@docker run --detach \
+	@docker run \
 		--name="$(CONTAINER)" \
 		--hostname="$(CONTAINER)" \
 		--env "USERNAME=test" \
 		--env "PASSWORD=test" \
+		--env "LAPSE=10" \
 		--env "DELAY=0" \
 		$(REPOSITORY)
 
-exec:
-	@docker exec -it $(CONTAINER) /bin/bash --login
-
-log:
-	@docker logs $(CONTAINER)
-
-stop:
-	@docker stop $(CONTAINER) > /dev/null 2>&1 ||:
-
-clean: stop
+clean:
 	@docker rm $(CONTAINER) > /dev/null 2>&1 ||:
 
 purge: clean
