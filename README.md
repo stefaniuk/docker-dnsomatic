@@ -23,8 +23,8 @@ Quickstart
 Todo
 ----
 
+ * Convert Python code to Shell script
  * Include timezone in the log output
- * Drop `onbuild` image
 
 See
 ---
