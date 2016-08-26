@@ -33,5 +33,5 @@ while True:
         else:
             log.error(req.text)
     except Exception as e:
-        log.error(str(e))
+        log.error('Unexpected error: ' + str(e))
     time.sleep(lapse)
