@@ -6,11 +6,11 @@ Easily announce your new IP to the world.
 Installation
 ------------
 
-Automated build is configured on [Docker Hub](https://hub.docker.com/r/stefaniuk/dnsomatic/) where you can download from the latest stable image.
+Automated builds are configured on [Docker Hub](https://hub.docker.com/r/stefaniuk/dnsomatic/) where you can download from the latest stable image.
 
     docker pull stefaniuk/dnsomatic:latest
 
-Alternatively you can build the image yourself.
+Alternatively, you can build the image yourself.
 
     docker build --tag stefaniuk/dnsomatic \
         github.com/stefaniuk/docker-dnsomatic
