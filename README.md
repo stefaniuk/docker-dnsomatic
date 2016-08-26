@@ -6,7 +6,7 @@ Easily announce your new IP to the world.
 Installation
 ------------
 
-Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/stefaniuk/dnsomatic/).
+Automated build is configured on [Docker Hub](https://hub.docker.com/r/stefaniuk/dnsomatic/) where you can download from the latest stable image.
 
     docker pull stefaniuk/dnsomatic:latest
 
@@ -18,7 +18,7 @@ Alternatively you can build the image yourself.
 Quickstart
 ----------
 
-Start container using:
+To create container execute:
 
     docker run --detach --restart always \
         --name "dnsomatic" \
@@ -27,7 +27,7 @@ Start container using:
         --env "PASSWORD=${PASSWORD}" \
         stefaniuk/dnsomatic
 
-Log in to it using:
+Should you need to log in into the container you have just created use the following command:
 
     docker exec -it dnsomatic /bin/bash
 
