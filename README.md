@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/stefaniuk/docker-dnsomatic.svg?style=shield "CircleCI")](https://circleci.com/gh/stefaniuk/docker-dnsomatic) [![Quay](https://quay.io/repository/stefaniuk/dnsomatic/status "Quay")](https://quay.io/repository/stefaniuk/dnsomatic)
+
 Docker DNS-O-Matic
 ==================
 
@@ -21,17 +23,18 @@ Quickstart
 To create container execute:
 
     docker run --detach --restart always \
-        --name "dnsomatic" \
-        --hostname "dnsomatic" \
+        --name dnsomatic \
+        --hostname dnsomatic \
         --env "USERNAME=${USERNAME}" \
         --env "PASSWORD=${PASSWORD}" \
         stefaniuk/dnsomatic
 
 Should you need to log in into the container you have just created use the following command:
 
-    docker exec -it dnsomatic /bin/bash
+    docker exec --interactive --tty dnsomatic \
+        /bin/bash
 
 See
 ---
 
- * [DNS-O-Matic API](https://www.dnsomatic.com/wiki/api)
+- [DNS-O-Matic API](https://www.dnsomatic.com/wiki/api)

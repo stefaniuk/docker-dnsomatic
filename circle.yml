@@ -1,0 +1,14 @@
+machine:
+  services:
+    - docker
+dependencies:
+  cache_directories:
+    - "~/docker"
+  override:
+    - docker info
+    - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
+    - docker build --tag stefaniuk/dnsomatic .
+    - mkdir -p ~/docker; docker save stefaniuk/dnsomatic > ~/docker/image.tar
+test:
+  override:
+    - docker run --interactive --tty --env "DELAY=0" stefaniuk/dnsomatic; sleep 10
