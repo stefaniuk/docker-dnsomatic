@@ -21,31 +21,31 @@ if delay > 0:
     log('INFO', 'Started with a ' + str(delay) + '-second delay')
     time.sleep(delay)
 
-current_ip = ''
-current_tries = 0
+currentIp = ''
+tried = 0
 while True:
     try:
         # get your IP address
         req = requests.get('http://myip.dnsomatic.com/')
         if req.status_code == 200:
-            new_ip = req.text
-            if new_ip != current_ip:
+            newIp = req.text
+            if newIp != currentIp:
 
                 # update DNS-O-Matic account
-                req = requests.get('https://updates.dnsomatic.com/nic/update?myip=' + new_ip, auth=(username, password))
+                req = requests.get('https://updates.dnsomatic.com/nic/update?myip=' + newIp, auth=(username, password))
                 if req.status_code != 200 or req.text.rsplit()[0] != 'good':
                     raise Exception(req.text)
 
-                log('INFO', ('Current IP ' if current_ip == '' else 'New IP ') + new_ip)
-                current_ip = new_ip
+                log('INFO', ('Current IP ' if currentIp == '' else 'New IP ') + newIp)
+                currentIp = newIp
         else:
             raise Exception(req.text)
     except Exception as e:
         log('ERROR', str(e))
 
     # check max number of tries
-    current_tries += 1
-    if tries > 0 and current_tries >= tries:
+    tried += 1
+    if tries > 0 and tried >= tries:
         log('INFO', 'Reached number of ' + str(tries) + ' tries')
         break
 
