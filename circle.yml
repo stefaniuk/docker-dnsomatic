@@ -11,4 +11,5 @@ dependencies:
     - mkdir -p ~/docker; docker save stefaniuk/dnsomatic > ~/docker/image.tar
 test:
   override:
-    - docker run --interactive --tty --env "DELAY=0" stefaniuk/dnsomatic; sleep 10
+    - docker run --interactive --tty --name dnsomatic --env "DELAY=0" stefaniuk/dnsomatic; sleep 3
+    - docker stop dnsomatic
