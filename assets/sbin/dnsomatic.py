@@ -14,6 +14,7 @@ username = os.getenv('USERNAME')
 password = os.getenv('PASSWORD')
 lapse = int(os.getenv('LAPSE'))
 delay = int(os.getenv('DELAY'))
+tries = int(os.getenv('TRIES'))
 
 # delay startup
 if delay > 0:
@@ -21,6 +22,7 @@ if delay > 0:
     time.sleep(delay)
 
 current_ip = ''
+current_tries = 0
 while True:
     try:
         # get your IP address
@@ -40,4 +42,11 @@ while True:
             raise Exception(req.text)
     except Exception as e:
         log('ERROR', str(e))
+
+    # check max number of tries
+    current_tries += 1
+    if tries > 0 and current_tries >= tries:
+        log('INFO', 'Reached number of ' + str(tries) + ' tries')
+        break
+
     time.sleep(lapse)

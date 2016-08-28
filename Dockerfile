@@ -4,6 +4,7 @@ ENV USERNAME="test" \
     PASSWORD="test" \
     LAPSE="300" \
     DELAY="120" \
+    TRIES="0" \
     TIMEZONE="Europe/London"
 
 RUN pip install \

@@ -30,6 +30,7 @@ start:
 		--hostname $(CONTAINER) \
 		--env "LAPSE=10" \
 		--env "DELAY=0" \
+		--env "TRIES=3" \
 		$(REPOSITORY)
 
 log:
