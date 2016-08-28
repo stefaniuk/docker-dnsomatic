@@ -6,7 +6,7 @@ from pytz import timezone as tz
 def log(level, msg):
     now = dt.now(tz(os.getenv('TIMEZONE')))
     datetime = now.strftime('%Y/%m/%d %H:%M:%S.%f')[:-3] + now.strftime('%z')
-    print(datetime + '|' + __file__.replace('.py', '') + '|' + level + '|' + msg)
+    print(datetime + '|dnsomatic|' + level + '|' + msg)
     return
 
 # get environment variables
