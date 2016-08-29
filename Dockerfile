@@ -1,4 +1,4 @@
-FROM stefaniuk/python:3.6-20160828
+FROM stefaniuk/python:3.6-20160829
 
 ENV USERNAME="test" \
     PASSWORD="test" \
@@ -7,9 +7,10 @@ ENV USERNAME="test" \
     TRIES="0" \
     TIMEZONE="Europe/London"
 
-RUN pip install \
-    pytz \
-    requests
+RUN set -ex \
+    && pip install \
+        pytz \
+        requests
 
-COPY assets/sbin/dnsomatic.py /sbin/dnsomatic.py
-CMD [ "-u", "/sbin/dnsomatic.py" ]
+COPY assets/usr/local/bin/dnsomatic.py /usr/local/bin/dnsomatic.py
+CMD [ "python", "-u", "/usr/local/bin/dnsomatic.py" ]
