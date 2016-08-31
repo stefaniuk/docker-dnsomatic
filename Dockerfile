@@ -1,4 +1,4 @@
-FROM stefaniuk/python:3.6-20160829
+FROM stefaniuk/python:3.6-20160831
 
 ENV USERNAME="test" \
     PASSWORD="test" \
@@ -8,6 +8,7 @@ ENV USERNAME="test" \
     TIMEZONE="Europe/London"
 
 RUN set -ex \
+    \
     && pip install \
         pytz \
         requests
