@@ -20,7 +20,7 @@ Alternatively, you can build the image yourself.
 Quickstart
 ----------
 
-To create container execute:
+Start container using:
 
     docker run --detach --restart always \
         --name dnsomatic \
