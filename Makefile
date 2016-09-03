@@ -18,7 +18,6 @@ help:
 
 build:
 	@docker build \
-		--build-arg APT_PROXY=${APT_PROXY} \
 		--build-arg VERSION=$(shell cat VERSION) \
 		--build-arg BUILD_DATE=$(shell date -u +"%Y-%m-%dT%H:%M:%SZ") \
 		--build-arg VCS_REF=$(shell git rev-parse --short HEAD) \
