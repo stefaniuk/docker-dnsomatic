@@ -12,8 +12,7 @@ help:
 	@echo
 	@echo "Usage:"
 	@echo
-	@echo "    make build|push APT_PROXY=url"
-	@echo "    make start|log|bash|stop|clean|prune"
+	@echo "    make build|push|start|log|bash|stop|clean|prune"
 	@echo
 
 build:
