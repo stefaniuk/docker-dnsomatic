@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/stefaniuk/docker-dnsomatic.svg?style=shield "CircleCI")](https://circleci.com/gh/stefaniuk/docker-dnsomatic) [![Quay](https://quay.io/repository/stefaniuk/dnsomatic/status "Quay")](https://quay.io/repository/stefaniuk/dnsomatic)
+[![Circle CI](https://circleci.com/gh/stefaniuk/docker-dnsomatic.svg?style=shield "CircleCI")](https://circleci.com/gh/stefaniuk/docker-dnsomatic)&nbsp;[![Size](https://images.microbadger.com/badges/image/stefaniuk/dnsomatic.svg)](http://microbadger.com/images/stefaniuk/dnsomatic)&nbsp;[![Version](https://images.microbadger.com/badges/version/stefaniuk/dnsomatic.svg)](http://microbadger.com/images/stefaniuk/dnsomatic)&nbsp;[![Commit](https://images.microbadger.com/badges/commit/stefaniuk/dnsomatic.svg)](http://microbadger.com/images/stefaniuk/dnsomatic)&nbsp;[![Docker Hub](https://img.shields.io/docker/pulls/stefaniuk/dnsomatic.svg)](https://hub.docker.com/r/stefaniuk/dnsomatic/)
 
 Docker DNS-O-Matic
 ==================
@@ -8,11 +8,11 @@ Easily announce your new IP to the world.
 Installation
 ------------
 
-Automated builds are configured on [Docker Hub](https://hub.docker.com/r/stefaniuk/dnsomatic/) where you can download from the latest stable image.
+Builds of the image are available on [Docker Hub](https://hub.docker.com/r/stefaniuk/dnsomatic/) where you can download from the latest stable image.
 
-    docker pull stefaniuk/dnsomatic
+    docker pull stefaniuk/dnsomatic:latest
 
-Alternatively, you can build the image yourself.
+Alternatively you can build the image yourself.
 
     docker build --tag stefaniuk/dnsomatic \
         github.com/stefaniuk/docker-dnsomatic
@@ -28,11 +28,6 @@ Start container using:
         --env "USERNAME=${USERNAME}" \
         --env "PASSWORD=${PASSWORD}" \
         stefaniuk/dnsomatic
-
-Should you need to log in into the container you have just created use the following command:
-
-    docker exec --interactive --tty dnsomatic \
-        /bin/bash
 
 See
 ---

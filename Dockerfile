@@ -1,4 +1,4 @@
-FROM stefaniuk/python:3.6-20160831
+FROM stefaniuk/python:3.6-20160903
 
 ENV USERNAME="test" \
     PASSWORD="test" \
@@ -15,3 +15,16 @@ RUN set -ex \
 
 COPY assets/usr/local/bin/dnsomatic.py /usr/local/bin/dnsomatic.py
 CMD [ "python", "-u", "/usr/local/bin/dnsomatic.py" ]
+
+### METADATA ###################################################################
+
+ARG VERSION
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VCS_URL
+LABEL \
+    version=$VERSION \
+    build-date=$BUILD_DATE \
+    vcs-ref=$VCS_REF \
+    vcs-url=$VCS_URL \
+    license="MIT"

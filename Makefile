@@ -1,10 +1,10 @@
 ifdef GITHUB_ACCOUNT
-	ACCOUNT := $(GITHUB_ACCOUNT)
+	OWNER := $(GITHUB_ACCOUNT)
 else
-	ACCOUNT := $(USER)
+	OWNER := $(USER)
 endif
-CONTAINER := $(subst docker-,,$(shell basename $(shell dirname $(realpath  $(lastword $(MAKEFILE_LIST))))))
-REPOSITORY :=  $(ACCOUNT)/$(CONTAINER)
+NAME := $(subst docker-,,$(shell basename $(shell dirname $(realpath  $(lastword $(MAKEFILE_LIST))))))
+IMAGE :=  $(OWNER)/$(NAME)
 
 all: help
 
@@ -12,43 +12,47 @@ help:
 	@echo
 	@echo "Usage:"
 	@echo
-	@echo "    make build|release|push"
-	@echo "    make start|log|bash|stop"
-	@echo "    make clean|prune"
+	@echo "    make build|push APT_PROXY=url"
+	@echo "    make start|log|bash|stop|clean|prune"
 	@echo
 
 build:
 	@docker build \
-		--tag $(REPOSITORY) --rm .
+		--build-arg APT_PROXY=${APT_PROXY} \
+		--build-arg VERSION=$(shell cat VERSION) \
+		--build-arg BUILD_DATE=$(shell date -u +"%Y-%m-%dT%H:%M:%SZ") \
+		--build-arg VCS_REF=$(shell git rev-parse --short HEAD) \
+		--build-arg VCS_URL=$(shell git config --get remote.origin.url) \
+		--tag $(IMAGE):$(shell cat VERSION) \
+		--rm .
+	@docker tag $(IMAGE):$(shell cat VERSION) $(IMAGE):latest
 
-release: build
-	@docker build \
-		--tag $(REPOSITORY):$(shell cat VERSION) --rm .
-
-push: release
-	@docker push $(REPOSITORY):$(shell cat VERSION)
+push:
+	@docker push $(IMAGE):$(shell cat VERSION)
+	@docker push $(IMAGE):latest
+	@curl --request POST "https://hooks.microbadger.com/images/stefaniuk/dnsomatic/j9tDGThNwuQbiXSAsvf8G10CBbQ="
 
 start:
 	@docker run --detach \
-		--name $(CONTAINER) \
-		--hostname $(CONTAINER) \
+		--name $(NAME) \
+		--hostname $(NAME) \
 		--env "LAPSE=10" \
 		--env "DELAY=0" \
 		--env "TRIES=3" \
-		$(REPOSITORY)
+		$(IMAGE)
 
 log:
-	@docker logs --follow $(CONTAINER)
+	@docker logs --follow $(NAME)
 
 bash:
-	@docker exec --interactive --tty $(CONTAINER) /bin/bash
+	@docker exec --interactive --tty $(NAME) /bin/bash
 
 stop:
-	@docker stop $(CONTAINER) > /dev/null 2>&1 ||:
+	@docker stop $(NAME) > /dev/null 2>&1 ||:
 
 clean: stop
-	@docker rm $(CONTAINER) > /dev/null 2>&1 ||:
+	@docker rm $(NAME) > /dev/null 2>&1 ||:
 
 prune: clean
-	@docker rmi $(REPOSITORY) > /dev/null 2>&1 ||:
-	@docker rmi $(REPOSITORY):$(shell cat VERSION) > /dev/null 2>&1 ||:
+	@docker rmi $(IMAGE):$(shell cat VERSION) > /dev/null 2>&1 ||:
+	@docker rmi $(IMAGE):latest > /dev/null 2>&1 ||:
