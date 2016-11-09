@@ -10,7 +10,7 @@ Installation
 
 Builds of the image are available on [Docker Hub](https://hub.docker.com/r/stefaniuk/dnsomatic/) where you can download from the latest stable image.
 
-    docker pull stefaniuk/dnsomatic:latest
+    docker pull stefaniuk/dnsomatic
 
 Alternatively you can build the image yourself.
 
