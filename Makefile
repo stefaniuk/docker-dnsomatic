@@ -12,7 +12,7 @@ help:
 	echo
 	echo "Usage:"
 	echo
-	echo "    make build|create|start|stop|log|bash|clean|remove|push"
+	echo "    make build|create|start|stop|log|test|bash|clean|remove|push"
 	echo
 
 build:
@@ -44,6 +44,12 @@ stop:
 
 log:
 	docker logs --follow $(NAME)
+
+test:
+	docker exec --interactive --tty \
+		--user "default" \
+		$(NAME) \
+		ps auxw
 
 bash:
 	docker exec --interactive --tty \
