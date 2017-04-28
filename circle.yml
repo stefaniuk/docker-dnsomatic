@@ -7,8 +7,8 @@ dependencies:
   override:
     - docker info
     - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
-    - docker build --tag stefaniuk/dnsomatic .
-    - mkdir -p ~/docker; docker save stefaniuk/dnsomatic > ~/docker/image.tar
+    - docker build --tag codeworksio/dnsomatic .
+    - mkdir -p ~/docker; docker save codeworksio/dnsomatic > ~/docker/image.tar
 test:
   override:
-    - docker run --interactive --tty --name dnsomatic --env "DELAY=0" --env "TRIES=1" stefaniuk/dnsomatic | grep 'dnsomatic|ERROR|badauth'
+    - docker run --interactive --tty --name dnsomatic --env "DELAY=0" --env "TRIES=1" codeworksio/dnsomatic | grep 'dnsomatic|ERROR|badauth'

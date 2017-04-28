@@ -1,4 +1,4 @@
-FROM stefaniuk/python:3.6-20170320
+FROM codeworksio/python:3.6-20170428
 
 ENV USERNAME="test" \
     PASSWORD="test" \

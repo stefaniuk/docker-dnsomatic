@@ -1,21 +1,21 @@
-[![Circle CI](https://circleci.com/gh/stefaniuk/docker-dnsomatic.svg?style=shield "CircleCI")](https://circleci.com/gh/stefaniuk/docker-dnsomatic)&nbsp;[![Size](https://images.microbadger.com/badges/image/stefaniuk/dnsomatic.svg)](http://microbadger.com/images/stefaniuk/dnsomatic)&nbsp;[![Version](https://images.microbadger.com/badges/version/stefaniuk/dnsomatic.svg)](http://microbadger.com/images/stefaniuk/dnsomatic)&nbsp;[![Commit](https://images.microbadger.com/badges/commit/stefaniuk/dnsomatic.svg)](http://microbadger.com/images/stefaniuk/dnsomatic)&nbsp;[![Docker Hub](https://img.shields.io/docker/pulls/stefaniuk/dnsomatic.svg)](https://hub.docker.com/r/stefaniuk/dnsomatic/)
+[![Circle CI](https://circleci.com/gh/codeworksio/docker-dnsomatic.svg?style=shield "CircleCI")](https://circleci.com/gh/codeworksio/docker-dnsomatic)&nbsp;[![Size](https://images.microbadger.com/badges/image/codeworksio/dnsomatic.svg)](http://microbadger.com/images/codeworksio/dnsomatic)&nbsp;[![Version](https://images.microbadger.com/badges/version/codeworksio/dnsomatic.svg)](http://microbadger.com/images/codeworksio/dnsomatic)&nbsp;[![Commit](https://images.microbadger.com/badges/commit/codeworksio/dnsomatic.svg)](http://microbadger.com/images/codeworksio/dnsomatic)&nbsp;[![Docker Hub](https://img.shields.io/docker/pulls/codeworksio/dnsomatic.svg)](https://hub.docker.com/r/codeworksio/dnsomatic/)
 
 Docker DNS-O-Matic
 ==================
 
-Easily announce your new IP to the world.
+Easily announce your new IP address to the world.
 
 Installation
 ------------
 
-Builds of the image are available on [Docker Hub](https://hub.docker.com/r/stefaniuk/dnsomatic/) where you can download from the latest stable image.
+Builds of the image are available on [Docker Hub](https://hub.docker.com/r/codeworksio/dnsomatic/) where you can download from the latest stable image.
 
-    docker pull stefaniuk/dnsomatic
+    docker pull codeworksio/dnsomatic
 
 Alternatively you can build the image yourself.
 
-    docker build --tag stefaniuk/dnsomatic \
-        github.com/stefaniuk/docker-dnsomatic
+    docker build --tag codeworksio/dnsomatic \
+        github.com/codeworksio/docker-dnsomatic
 
 Quickstart
 ----------
@@ -27,7 +27,7 @@ Start container using:
         --hostname dnsomatic \
         --env "USERNAME=${USERNAME}" \
         --env "PASSWORD=${PASSWORD}" \
-        stefaniuk/dnsomatic
+        codeworksio/dnsomatic
 
 See
 ---
