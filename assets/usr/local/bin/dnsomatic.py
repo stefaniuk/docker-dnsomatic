@@ -4,17 +4,17 @@ from pytz import timezone as tz
 
 # log message
 def log(level, msg):
-    now = dt.now(tz(os.getenv('TIMEZONE')))
+    now = dt.now(tz(os.getenv('DNSOMATIC_TIMEZONE')))
     datetime = now.strftime('%Y/%m/%d %H:%M:%S.%f')[:-3] + now.strftime('%z')
     print(datetime + '|dnsomatic|' + level + '|' + msg)
     return
 
 # get environment variables
-username = os.getenv('USERNAME')
-password = os.getenv('PASSWORD')
-lapse = int(os.getenv('LAPSE'))
-delay = int(os.getenv('DELAY'))
-tries = int(os.getenv('TRIES'))
+username = os.getenv('DNSOMATIC_USERNAME')
+password = os.getenv('DNSOMATIC_PASSWORD')
+lapse = int(os.getenv('DNSOMATIC_LAPSE'))
+delay = int(os.getenv('DNSOMATIC_DELAY'))
+tries = int(os.getenv('DNSOMATIC_TRIES'))
 
 # delay startup
 if delay > 0:
