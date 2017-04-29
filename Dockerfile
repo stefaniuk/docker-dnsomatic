@@ -1,11 +1,10 @@
 FROM codeworksio/python:3.6-20170428
 
-ENV DNSOMATIC_USERNAME="test" \
-    DNSOMATIC_PASSWORD="test" \
-    DNSOMATIC_LAPSE="300" \
-    DNSOMATIC_DELAY="120" \
-    DNSOMATIC_TRIES="0" \
-    DNSOMATIC_TIMEZONE="Europe/London"
+ENV DNSOMATIC_USERNAME="username" \
+    DNSOMATIC_PASSWORD="password" \
+    DNSOMATIC_DELAY="60" \
+    DNSOMATIC_INTERVAL="60" \
+    DNSOMATIC_TRIES="0"
 
 RUN set -ex \
     \

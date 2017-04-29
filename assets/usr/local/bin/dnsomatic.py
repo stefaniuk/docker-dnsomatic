@@ -4,7 +4,7 @@ from pytz import timezone as tz
 
 # log message
 def log(level, msg):
-    now = dt.now(tz(os.getenv('DNSOMATIC_TIMEZONE')))
+    now = dt.now(tz(os.getenv('TZ')))
     datetime = now.strftime('%Y/%m/%d %H:%M:%S.%f')[:-3] + now.strftime('%z')
     print(datetime + '|dnsomatic|' + level + '|' + msg)
     return
@@ -12,8 +12,8 @@ def log(level, msg):
 # get environment variables
 username = os.getenv('DNSOMATIC_USERNAME')
 password = os.getenv('DNSOMATIC_PASSWORD')
-lapse = int(os.getenv('DNSOMATIC_LAPSE'))
 delay = int(os.getenv('DNSOMATIC_DELAY'))
+interval = int(os.getenv('DNSOMATIC_INTERVAL'))
 tries = int(os.getenv('DNSOMATIC_TRIES'))
 
 # delay startup
@@ -49,4 +49,4 @@ while True:
         log('INFO', 'Reached number of ' + str(tries) + ' tries')
         break
 
-    time.sleep(lapse)
+    time.sleep(interval)
