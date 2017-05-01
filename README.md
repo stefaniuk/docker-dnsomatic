@@ -25,8 +25,8 @@ Start container using:
     docker run --detach --restart always \
         --name dnsomatic \
         --hostname dnsomatic \
-        --env "USERNAME=${USERNAME}" \
-        --env "PASSWORD=${PASSWORD}" \
+        --env "DNSOMATIC_USERNAME=username" \
+        --env "DNSOMATIC_PASSWORD=password" \
         codeworksio/dnsomatic
 
 See

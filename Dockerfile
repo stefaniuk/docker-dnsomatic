@@ -1,4 +1,4 @@
-FROM codeworksio/python:3.6-20170428
+FROM codeworksio/python:latest
 
 ENV DNSOMATIC_USERNAME="username" \
     DNSOMATIC_PASSWORD="password" \

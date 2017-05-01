@@ -7,7 +7,7 @@ help:
 	echo
 	echo "Usage:"
 	echo
-	echo "    make build|create|start|stop|log|test|bash|clean|remove|push"
+	echo "    make build|start|stop|log|test|bash|clean|remove|push"
 	echo
 
 build:
@@ -21,19 +21,16 @@ build:
 	docker tag $(IMAGE):$(shell cat VERSION) $(IMAGE):latest
 	docker rmi --force $$(docker images | grep "<none>" | awk '{ print $$3 }') 2> /dev/null ||:
 
-create:
+start:
 	docker stop $(IMAGE) > /dev/null 2>&1 ||:
 	docker rm $(IMAGE) > /dev/null 2>&1 ||:
-	docker create --interactive --tty \
+	docker run --detach --interactive --tty \
 		--name $(NAME) \
 		--hostname $(NAME) \
-		--env "LAPSE=10" \
-		--env "DELAY=0" \
-		--env "TRIES=3" \
+		--env "DNSOMATIC_DELAY=0" \
+		--env "DNSOMATIC_INTERVAL=10" \
+		--env "DNSOMATIC_TRIES=3" \
 		$(IMAGE)
-
-start:
-	docker start $(NAME)
 
 stop:
 	docker stop $(NAME)
@@ -43,7 +40,7 @@ log:
 
 test:
 	docker exec --interactive --tty \
-		--user "default" \
+		--user "ubuntu" \
 		$(NAME) \
 		ps auxw
 
