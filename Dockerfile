@@ -1,4 +1,4 @@
-FROM codeworksio/python:latest
+FROM codeworksio/python:3.6-20170605
 
 ENV DNSOMATIC_USERNAME="username" \
     DNSOMATIC_PASSWORD="password" \
@@ -13,6 +13,7 @@ RUN set -ex \
         requests
 
 COPY assets/usr/local/bin/dnsomatic.py /usr/local/bin/dnsomatic.py
+
 CMD [ "python", "-u", "/usr/local/bin/dnsomatic.py" ]
 
 ### METADATA ###################################################################
