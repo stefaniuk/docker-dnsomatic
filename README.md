@@ -32,4 +32,4 @@ Start container using:
 See
 ---
 
-- [DNS-O-Matic API](https://www.dnsomatic.com/wiki/api)
+* [DNS-O-Matic API](https://www.dnsomatic.com/wiki/api)
