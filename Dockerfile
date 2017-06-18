@@ -1,4 +1,4 @@
-FROM codeworksio/python:3.6-20170615
+FROM codeworksio/python:3.6-20170618
 
 ENV DNSOMATIC_USERNAME="username" \
     DNSOMATIC_PASSWORD="password" \
@@ -11,6 +11,8 @@ RUN set -ex \
     && pip install \
         pytz \
         requests
+
+COPY assets/ /
 
 CMD [ "python", "-u", "/usr/local/bin/dnsomatic.py" ]
 
