@@ -28,6 +28,7 @@ start:
 	docker run --detach --interactive --tty \
 		--name $(NAME) \
 		--hostname $(NAME) \
+		--env "INIT_DEBUG=true" \
 		--env "DNSOMATIC_DELAY=0" \
 		--env "DNSOMATIC_INTERVAL=10" \
 		--env "DNSOMATIC_TRIES=3" \
