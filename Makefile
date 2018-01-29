@@ -1,6 +1,6 @@
 TARGETS := $(shell cat $(realpath $(lastword $(MAKEFILE_LIST))) | grep "^[a-z]*:" | awk '{ print $$1; }' | sed 's/://g' | grep -vE 'all|help' | paste -sd "|" -)
 NAME := $(subst docker-,,$(shell basename $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))))
-IMAGE := $(shell basename $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))/..)))/$(NAME)
+IMAGE := codeworksio/$(NAME)
 
 all: help
 
@@ -13,7 +13,7 @@ help:
 
 build:
 	docker build \
-		--build-arg IMAGE=${IMAGE} \
+		--build-arg IMAGE=$(IMAGE) \
 		--build-arg BUILD_DATE=$(shell date -u +"%Y-%m-%dT%H:%M:%SZ") \
 		--build-arg VERSION=$(shell cat VERSION) \
 		--build-arg VCS_REF=$(shell git rev-parse --short HEAD) \
