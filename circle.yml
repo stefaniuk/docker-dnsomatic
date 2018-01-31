@@ -11,4 +11,5 @@ dependencies:
     - mkdir -p ~/docker; docker save codeworksio/dnsomatic > ~/docker/image.tar
 test:
   override:
-    - docker run --interactive --tty --name dnsomatic --env "DNSOMATIC_DELAY=0" --env "DNSOMATIC_TRIES=1" codeworksio/dnsomatic | grep 'dnsomatic|ERROR|badauth'
+    - docker run --detach --interactive --tty --env "DNSOMATIC_DELAY=0" --name dnsomatic codeworksio/dnsomatic; sleep 10
+    - docker logs apt-cacher-ng | grep 'dnsomatic|ERROR|badauth'
