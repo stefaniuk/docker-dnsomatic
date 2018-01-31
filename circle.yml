@@ -12,4 +12,4 @@ dependencies:
 test:
   override:
     - docker run --detach --interactive --tty --env "DNSOMATIC_DELAY=0" --name dnsomatic codeworksio/dnsomatic; sleep 10
-    - docker logs apt-cacher-ng | grep 'dnsomatic|ERROR|badauth'
+    - docker logs dnsomatic | grep 'dnsomatic|ERROR|badauth'
