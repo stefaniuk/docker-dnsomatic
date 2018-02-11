@@ -42,12 +42,13 @@ log:
 
 test:
 	docker exec --interactive --tty \
-		--user "ubuntu" \
+		--user ubuntu \
 		$(NAME) \
 		ps auxw
 
 bash:
 	docker exec --interactive --tty \
+		--user root \
 		$(NAME) \
 		/bin/bash --login ||:
 
