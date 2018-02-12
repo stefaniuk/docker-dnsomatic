@@ -41,10 +41,9 @@ log:
 	docker logs --follow $(NAME)
 
 test:
-	docker exec --interactive --tty \
-		--user ubuntu \
-		$(NAME) \
-		ps auxw
+	docker run --detach --interactive --tty --env "DNSOMATIC_DELAY=0" --name dnsomatic codeworksio/dnsomatic
+	sleep 10
+	docker logs dnsomatic | grep 'dnsomatic|ERROR|badauth'
 
 bash:
 	docker exec --interactive --tty \
